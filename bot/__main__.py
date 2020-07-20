@@ -79,8 +79,7 @@ module_names = (
     cogs.config.__name__[st:], cogs.discord.discord.__name__[st:],
     cogs.discord.synergii.__name__[st:], cogs.laboratory.__name__[st:],
     cogs.memory.__name__[st:], cogs.persona.__name__[st:],
-    cogs.reddit.reddit.__name__[st:], cogs.reddit.feeds.__name__[st:],
-    cogs.register.__name__[st:], cogs.security.__name__[st:],
+    cogs.security.__name__[st:],
     cogs.system.__name__[st:])
 cog_names = (
     cogs.aliases_mods.ModAliases.__qualname__,
@@ -88,8 +87,7 @@ cog_names = (
     cogs.config.Config.__qualname__, cogs.discord.Discord.__qualname__,
     cogs.discord.Synergii.__qualname__,
     cogs.laboratory.Laboratory.__qualname__, cogs.memory.Memory.__qualname__,
-    cogs.persona.Persona.__qualname__, cogs.reddit.reddit.Reddit.__qualname__,
-    cogs.reddit.feeds.Feeds.__qualname__, cogs.register.Register.__qualname__,
+    cogs.persona.Persona.__qualname__,
     cogs.security.Security.__qualname__, cogs.system.System.__qualname__)
 
 # Load Cog/Extensions
@@ -104,7 +102,7 @@ try:
     # Check to make sure we have a token
     import os
     txt_token_key = 'DISCORD_BOT_TOKEN'
-    discord_token = os.environ[txt_token_key]
+    discord_token = 'NzM0ODcwODYxNzE4MjI1MDY2.XxYAZg.c6AoFeRHwpIK2JMHk5xbHB43ChM'
     wh.run(discord_token)
 except KeyError as e:
     log.critical('DISCORD_BOT_TOKEN not set in env.')

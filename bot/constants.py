@@ -10,8 +10,8 @@ reserved_commands = [
 __version__ = 'v0.0.2'
 text_wh_version = 'wiihacky_version'
 text_wh_name = 'WiiHacks'
-id_bloodythorn = 574629343142346757
-id_wiihacks = 582816924359065611
+id_bloodythorn = 137467961324601344
+id_wiihacks = 734869659207336058
 id_wiihacky = 630280409137283085
 
 reddit_user_role_id = 708924829679747073
@@ -30,7 +30,7 @@ confirmation_message_body = \
 This private message is to help you associate your r/wiihacks Reddit account
 with your r/wiihacks Discord account.
 
-With this association you will gain the Redditor role, and access to 
+With this association you will gain the Redditor role, and access to
 redditor-only areas in the discord.
 
 If you did not request this, please ignore this PM. If you suspect mischief,
@@ -39,17 +39,17 @@ please contact the moderators of r/WiiHacks via modmail.
 If you did request this confirmation, here are your instructions on what to do
 next:
 
-1. In your Discord, click on your username in the lower left. You should see 
+1. In your Discord, click on your username in the lower left. You should see
    a pop-up that says 'Copied!'
 2. Now come back to this message and hit 'reply' down at the bottom.
 3. When the reply window opens press ctrl-v to paste in your username#number.
 4. Hit send.
 
 You should be verified in a few minutes.
- 
-Please contact a moderator on 
+
+Please contact a moderator on
 [r/WiiHacks via modmail](https://www.reddit.com/message/compose?to=/r/WiiHacks),
-or on the [r/WiiHacks discord](https://discord.com/invite/6fsXnTr) #support 
+or on the [r/WiiHacks discord](https://discord.com/invite/6fsXnTr) #support
 channel if you aren't verified in 24 hours.
 """
 
