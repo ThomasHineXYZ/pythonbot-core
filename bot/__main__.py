@@ -17,15 +17,12 @@ env_file_name = '.env'
 env_path = Path('.') / env_file_name
 load_dotenv(dotenv_path=env_path)
 
-local_env_file_name = env_file_name + '.local'
-local_env_path = Path('.') / local_env_file_name
-
 # Check if .env.local exists, if so, load up those variables, overriding the
 # previously set ones
+local_env_file_name = env_file_name + '.local'
+local_env_path = Path('.') / local_env_file_name
 if os.path.isfile(local_env_file_name):
     load_dotenv(dotenv_path=local_env_path, override=True)
-
-print(os.getenv("test"))
 
 # Set Debug Level: Pull debug mode from env
 DEBUG_MODE = None
@@ -91,20 +88,28 @@ wh = disextc.Bot(
 # I believe this needs to be here
 st = len('cogs.')
 module_names = (
-    cogs.aliases_mods.__name__[st:], cogs.aliases_users.__name__[st:],
-    cogs.config.__name__[st:], cogs.discord.discord.__name__[st:],
-    cogs.discord.synergii.__name__[st:], cogs.laboratory.__name__[st:],
-    cogs.memory.__name__[st:], cogs.persona.__name__[st:],
+    cogs.aliases_mods.__name__[st:],
+    cogs.aliases_users.__name__[st:],
+    cogs.config.__name__[st:],
+    cogs.discord.discord.__name__[st:],
+    cogs.discord.synergii.__name__[st:],
+    cogs.laboratory.__name__[st:],
+    cogs.memory.__name__[st:],
+    cogs.persona.__name__[st:],
     cogs.security.__name__[st:],
     cogs.system.__name__[st:])
+
 cog_names = (
     cogs.aliases_mods.ModAliases.__qualname__,
     cogs.aliases_users.UserAliases.__qualname__,
-    cogs.config.Config.__qualname__, cogs.discord.Discord.__qualname__,
+    cogs.config.Config.__qualname__,
+    cogs.discord.Discord.__qualname__,
     cogs.discord.Synergii.__qualname__,
-    cogs.laboratory.Laboratory.__qualname__, cogs.memory.Memory.__qualname__,
+    cogs.laboratory.Laboratory.__qualname__,
+    cogs.memory.Memory.__qualname__,
     cogs.persona.Persona.__qualname__,
-    cogs.security.Security.__qualname__, cogs.system.System.__qualname__)
+    cogs.security.Security.__qualname__,
+    cogs.system.System.__qualname__)
 
 # Load Cog/Extensions
 for a in module_names:
@@ -115,11 +120,13 @@ for a in module_names:
 # Attempt to loin to discord
 try:
     log.info('Bot Starting...')
-    # Check to make sure we have a token
-    import os
-    txt_token_key = 'DISCORD_BOT_TOKEN'
-    discord_token = 'NzM0ODcwODYxNzE4MjI1MDY2.XxYAZg.c6AoFeRHwpIK2JMHk5xbHB43ChM'
-    wh.run(discord_token)
+
+    # Check if the Discord bot token is set or not
+    if len(os.environ['DISCORD_BOT_TOKEN']) == 0:
+        print("You're missing the DISCORD_BOT_TOKEN env variable in your local file.")
+        exit(-1)
+
+    wh.run(os.environ['DISCORD_BOT_TOKEN'])
 except KeyError as e:
     log.critical('DISCORD_BOT_TOKEN not set in env.')
     exit(-1)
