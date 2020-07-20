@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import aiohttp
 import discord
 import discord.ext.commands as disextc
@@ -10,6 +11,21 @@ from pathlib import Path
 import cogs
 
 # TODO: Make the log level settable at during runtime.
+
+# Load up the environment variables
+env_file_name = '.env'
+env_path = Path('.') / env_file_name
+load_dotenv(dotenv_path=env_path)
+
+local_env_file_name = env_file_name + '.local'
+local_env_path = Path('.') / local_env_file_name
+
+# Check if .env.local exists, if so, load up those variables, overriding the
+# previously set ones
+if os.path.isfile(local_env_file_name):
+    load_dotenv(dotenv_path=local_env_path, override=True)
+
+print(os.getenv("test"))
 
 # Set Debug Level: Pull debug mode from env
 DEBUG_MODE = None
