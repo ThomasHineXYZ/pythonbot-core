@@ -493,8 +493,7 @@ class InboxDisplay:
         log.debug(f'Sending display text to target channel. {target}')
         message = await self.display_to_message(target)
         emoji_bar = await self.get_emoji_bar()
-        from constants import id_discord_bot
-        wiihacky = self.bot.get_user(id_discord_bot)
+        wiihacky = self.bot.get_user(os.environ['ID_DISCORD_BOT'])
 
         # Define user check
         def user_check(_reaction, _user):

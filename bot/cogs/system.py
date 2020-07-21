@@ -6,6 +6,7 @@ import typing as typ
 import constants
 import converters
 import decorators
+import os
 from converters import BooleanFuzzyConverter as FuzzyBool
 # TODO: Get this out of here.
 from constants import paginate, send_paginator
@@ -198,7 +199,7 @@ class System(disextc.Cog):
                 self.command_error, name='on_command_error')
 
     @system_group.command(name='hs', hidden=True)
-    @decorators.with_roles(constants.moderator_and_up)
+    @decorators.with_roles(os.environ['IDS_MODERATOR_AND_UP'])
     async def health_and_safety_display_command(
             self, ctx: disextc.Context,
             channel: typ.Optional[discord.TextChannel]):

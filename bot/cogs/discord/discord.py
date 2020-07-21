@@ -3,6 +3,7 @@ import discord as discord
 import discord.ext.commands as disextc
 import logging as lg
 import nltk
+import os
 import praw
 import random
 import torch
@@ -308,8 +309,7 @@ class Discord(disextc.Cog):
         """
         message_format = 'From:{}|Where:{}|:-> {}'
         dev_not_found = 'Developer could not be found on discord!'
-        from constants import id_discord_admin
-        dev: discord.User = self.bot.get_user(id_discord_admin)
+        dev: discord.User = self.bot.get_user(os.environ['ID_DISCORD_ADMIN'])
         if dev is not None:
             snd = message_format.format(ctx.author, ctx.channel, message)
             await dev.send(snd)
@@ -317,7 +317,7 @@ class Discord(disextc.Cog):
             raise disextc.BadArgument(dev_not_found)
 
     @discord_group.command(name='rename', hidden=True)
-    @decorators.with_roles(constants.moderator_and_up)
+    @decorators.with_roles(os.environ['IDS_MODERATOR_AND_UP'])
     async def rename_command(
             self, ctx: disextc.Context,
             member: discord.Member,

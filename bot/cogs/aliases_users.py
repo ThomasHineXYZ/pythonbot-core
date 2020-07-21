@@ -1,6 +1,7 @@
 import discord
 import discord.ext.commands as disextc
 import logging as lg
+import os
 import typing as typ
 
 import constants
@@ -33,14 +34,14 @@ class UserAliases(disextc.Cog):
         await ctx.invoke(cmd, *args, **kwargs)
 
     @disextc.command(name='register')
-    @decorators.without_role([constants.reddit_user_role_id])
+    @decorators.without_role([os.environ['DISCORD_BOT_TOKEN']])
     async def register_reddit_alias(
             self, ctx: disextc.Context, reddit_name: str) -> None:
         """ Register your Reddit account with r/WiiHacks Discord guild."""
         await self.invoke(ctx, "reg register", reddit_name)
 
     @disextc.command(name='karma')
-    @decorators.with_roles([constants.reddit_user_role_id])
+    @decorators.with_roles([os.environ['DISCORD_BOT_TOKEN']])
     async def karma_alias(
             self,
             ctx: disextc.Context,
@@ -52,7 +53,7 @@ class UserAliases(disextc.Cog):
             await self.invoke(ctx, "reg karma", user=user)
 
     @disextc.command(name='lastseen', aliases=('last', 'ls'))
-    @decorators.with_roles([constants.reddit_user_role_id])
+    @decorators.with_roles([os.environ['DISCORD_BOT_TOKEN']])
     async def last_seen_alias(
             self, ctx: disextc.Context, *, user: discord.Member) -> None:
         """ Will retrieve when user was last seen. """

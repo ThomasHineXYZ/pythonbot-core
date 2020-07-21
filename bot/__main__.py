@@ -1,28 +1,19 @@
-from dotenv import load_dotenv
+# Needs to be imported first
+import variables
+
+from logging import handlers
+from pathlib import Path
 import aiohttp
+import constants
 import discord
 import discord.ext.commands as disextc
 import logging as lg
 import os
 
-from logging import handlers
-from pathlib import Path
-
+# Needs to be imported last
 import cogs
 
 # TODO: Make the log level settable at during runtime.
-
-# Load up the environment variables
-env_file_name = '.env'
-env_path = Path('.') / env_file_name
-load_dotenv(dotenv_path=env_path)
-
-# Check if .env.local exists, if so, load up those variables, overriding the
-# previously set ones
-local_env_file_name = env_file_name + '.local'
-local_env_path = Path('.') / local_env_file_name
-if os.path.isfile(local_env_file_name):
-    load_dotenv(dotenv_path=local_env_path, override=True)
 
 # Set Debug Level: Pull debug mode from env
 DEBUG_MODE = None
@@ -54,8 +45,11 @@ log.addHandler(file_handler)
 log.addHandler(stream_handler)
 
 # Set helper lib libraries log levels.
-set_to_warning = ('discord', 'websockets', 'asyncio', 'urllib3.connectionpool',
-                  'prawcore', 'aioredis')
+set_to_warning = (
+    'discord', 'websockets', 'asyncio',
+    'urllib3.connectionpool', 'prawcore', 'aioredis'
+)
+
 for a in set_to_warning:
     lg.getLogger(a).setLevel(lg.WARNING)
 

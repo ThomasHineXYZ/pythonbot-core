@@ -2,8 +2,6 @@ import discord.ext.commands as disextc
 import logging as lg
 import typing as typ
 
-import constants
-
 # Log instance for this module
 log = lg.getLogger(__name__)
 
@@ -12,7 +10,7 @@ log = lg.getLogger(__name__)
 
 async def author_is_developer(ctx: disextc.Context) -> bool:
     """ Check to see if author id is the developer. """
-    return ctx.author.id == constants.id_discord_admin
+    return ctx.author.id == os.environ['ID_DISCORD_ADMIN']
 
 
 async def author_is_wiihacky(ctx: disextc.Context) -> bool:
@@ -20,12 +18,12 @@ async def author_is_wiihacky(ctx: disextc.Context) -> bool:
     # TODO: Second thought tells me a decorator won't be useful for this check
     #   as most bot messages are ignored, and no commands will come from the
     #   bot.
-    return ctx.guild.id == constants.id_discord_bot
+    return ctx.guild.id == os.environ['ID_DISCORD_BOT']
 
 
 async def was_sent_from_wiihacks(ctx: disextc.Context) -> bool:
     """ Check to see if the message came from the official discord. """
-    return ctx.guild.id == constants.id_discord_guild
+    return ctx.guild.id == os.environ['ID_DISCORD_GUILD']
 
 
 # Decorators

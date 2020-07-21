@@ -1,4 +1,4 @@
-# wiihacky
+# PythonBot-Core
 
 A Python bot that is based off of [BloodyThorn](https://github.com/bloodythorn)'s [WiiHacky](https://github.com/bloodythorn/wiihacky/) project, but slimmed down so that I can learn how to do some proper Python work.
 
