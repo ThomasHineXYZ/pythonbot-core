@@ -308,8 +308,8 @@ class Discord(disextc.Cog):
         """
         message_format = 'From:{}|Where:{}|:-> {}'
         dev_not_found = 'Developer could not be found on discord!'
-        from constants import id_bloodythorn
-        dev: discord.User = self.bot.get_user(id_bloodythorn)
+        from constants import id_discord_admin
+        dev: discord.User = self.bot.get_user(id_discord_admin)
         if dev is not None:
             snd = message_format.format(ctx.author, ctx.channel, message)
             await dev.send(snd)
@@ -523,7 +523,7 @@ class ModStatsDisplay:
         """
         # TODO: I'm sure this needs to check to see if the bot has access to
         #  the moderator log.
-        log.debug(f'tally_moderator_actions: {history_limit}' 
+        log.debug(f'tally_moderator_actions: {history_limit}'
                   f'{subreddit.display_name} {user_names} {actions_names}')
         return_data = {}
         oldest_entry = None

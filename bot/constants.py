@@ -1,7 +1,22 @@
 import discord
 import discord.ext.commands as disextc
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
 # Constants
+
+# Load up the environment variables
+env_file_name = '.env'
+env_path = Path('.') / env_file_name
+load_dotenv(dotenv_path=env_path)
+
+# Check if .env.local exists, if so, load up those variables, overriding the
+# previously set ones
+local_env_file_name = env_file_name + '.local'
+local_env_path = Path('.') / local_env_file_name
+if os.path.isfile(local_env_file_name):
+    load_dotenv(dotenv_path=local_env_path, override=True)
 
 reserved_commands = [
     'giphy', 'tenor', 'tts', 'me', 'tableflip',
@@ -11,9 +26,9 @@ reserved_commands = [
 __version__ = 'v0.0.2'
 text_wh_version = 'wiihacky_version'
 text_wh_name = 'WiiHacks'
-id_bloodythorn = 137467961324601344
-id_wiihacks = 734869659207336058
-id_wiihacky = 630280409137283085
+id_discord_admin = os.environ['ID_DISCORD_ADMIN']
+id_discord_guild = os.environ['ID_DISCORD_GUILD']
+id_discord_bot = os.environ['ID_DISCORD_BOT']
 
 reddit_user_role_id = 708924829679747073
 

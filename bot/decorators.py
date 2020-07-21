@@ -12,7 +12,7 @@ log = lg.getLogger(__name__)
 
 async def author_is_developer(ctx: disextc.Context) -> bool:
     """ Check to see if author id is the developer. """
-    return ctx.author.id == constants.id_bloodythorn
+    return ctx.author.id == constants.id_discord_admin
 
 
 async def author_is_wiihacky(ctx: disextc.Context) -> bool:
@@ -20,12 +20,12 @@ async def author_is_wiihacky(ctx: disextc.Context) -> bool:
     # TODO: Second thought tells me a decorator won't be useful for this check
     #   as most bot messages are ignored, and no commands will come from the
     #   bot.
-    return ctx.guild.id == constants.id_wiihacky
+    return ctx.guild.id == constants.id_discord_bot
 
 
 async def was_sent_from_wiihacks(ctx: disextc.Context) -> bool:
     """ Check to see if the message came from the official discord. """
-    return ctx.guild.id == constants.id_wiihacks
+    return ctx.guild.id == constants.id_discord_guild
 
 
 # Decorators
@@ -46,7 +46,7 @@ def without_role(role_ids: typ.List[int]) -> typ.Callable:
             log.debug(f'without_role: {role.id} {role_ids}')
             if role.id in role_ids:
                 disextc.CommandError(
-                    f"The '{role.name}' role prevents you " 
+                    f"The '{role.name}' role prevents you "
                     f"from running this command.")
         return True
     return disextc.check(predicate)
@@ -57,7 +57,7 @@ def with_roles(role_ids: typ.List[int]) -> typ.Callable:
     async def predicate(ctx: disextc.Context) -> bool:
         if not ctx.guild:  # Return False in a DM
             log.debug(
-                f"{ctx.author} tried to use the '{ctx.command.name}'" 
+                f"{ctx.author} tried to use the '{ctx.command.name}'"
                 "command from a DM. "
                 "This command is restricted by the with_role decorator."
                 "Rejecting request.")

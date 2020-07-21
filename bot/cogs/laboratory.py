@@ -493,8 +493,8 @@ class InboxDisplay:
         log.debug(f'Sending display text to target channel. {target}')
         message = await self.display_to_message(target)
         emoji_bar = await self.get_emoji_bar()
-        from constants import id_wiihacky
-        wiihacky = self.bot.get_user(id_wiihacky)
+        from constants import id_discord_bot
+        wiihacky = self.bot.get_user(id_discord_bot)
 
         # Define user check
         def user_check(_reaction, _user):
@@ -569,8 +569,8 @@ class InboxDisplay:
             # Conditions for true
             # reaction must be in reaction bar
             log.debug(f'user_check fired {_reaction}{_user}')
-            from constants import id_wiihacky
-            wiihacky = self.bot.get_user(id_wiihacky)
+            from constants import id_discord_bot
+            wiihacky = self.bot.get_user(id_discord_bot)
             if _user == wiihacky:
                 log.debug(f'Bot made reaction')
                 return False
