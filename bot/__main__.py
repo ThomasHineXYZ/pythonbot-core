@@ -62,7 +62,7 @@ for a in set_to_warning:
 log.info('Logger is setup.')
 
 # Module Constants
-command_chars = ('!',)
+command_character = os.environ['COMMAND_CHARACTER']
 message_cache = 1000 * 10
 txt_help_description = \
     """r/WiiHacks Discord Help Menu"""
@@ -76,7 +76,7 @@ txt_activity_details = \
 # Create Bot
 wh = disextc.Bot(
     max_messages=message_cache,
-    command_prefix=disextc.when_mentioned_or(*command_chars),
+    command_prefix=disextc.when_mentioned_or(*command_character),
     fetch_offline_members=True,
     description=txt_help_description,
     activity=discord.Activity(
